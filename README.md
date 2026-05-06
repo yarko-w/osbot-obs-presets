@@ -9,7 +9,7 @@ This script automatically moves your OBSBOT Tiny SE camera to a preset position 
 - A Windows 11 PC running OBS Studio
 - OBSBOT Center installed and running
 - Your OBSBOT Tiny SE camera connected via USB
-- The script file: `obsbot_preset.py`
+- The script file: `obsbot_preset_script.py`
 - Preset positions already saved in OBSBOT Center (up to 3)
 
 ---
