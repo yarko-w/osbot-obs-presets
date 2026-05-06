@@ -18,7 +18,7 @@ PORT = 8999
 # Logs are written to obsbot_preset.log in the same folder as
 # this script file. Open that file to see what the script is doing.
 # ---------------------------------------------------------------
-log_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "obsbot_preset.log")
+log_path = os.path.join(os.environ.get("TEMP", os.getcwd()), "obsbot_preset.log")
 logging.basicConfig(
     filename=log_path,
     level=logging.DEBUG,
