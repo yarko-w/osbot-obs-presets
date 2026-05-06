@@ -21,8 +21,8 @@ This is the most important step. The script will not work unless OSC is turned o
 1. Open **OBSBOT Center**
 2. Click the **Settings** icon (cog symbol)
 3. Look for an **OSC** or **External Control** section
-4. Turn the OSC toggle **ON**
-5. Confirm the IP is set to `127.0.0.1` and the port is `16284` (these are the defaults)
+4. Turn the OSC toggle **ON** if there is the option
+5. Confirm the Connection is `UDP`, the Host IP is set to `127.0.0.1` and the port is `16284` (these are the defaults)
 6. Leave OBSBOT Center running in the background — closing it stops OSC
 
 ---
