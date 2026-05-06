@@ -81,8 +81,8 @@ For example:
 | Field | Scene Name You Type |
 |---|---|
 | Scene → Preset 1 | Wide Shot |
-| Scene → Preset 2 | Speaker |
-| Scene → Preset 3 | Audience |
+| Scene → Preset 2 | Podium |
+| Scene → Preset 3 | Demo |
 
 > **Important:** The scene name must match exactly as it appears in OBS, including capital letters and spaces. For example `Wide Shot` is not the same as `wide shot`.
 
