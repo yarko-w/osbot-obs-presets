@@ -9,14 +9,27 @@ This script automatically moves your OBSBOT Tiny SE camera to a preset position 
 - A Windows 11 PC running OBS Studio
 - OBSBOT Center installed and running
 - Your OBSBOT Tiny SE camera connected via USB
-- The script file: `obsbot_preset_script.py`
+- The script file: `obsbot_preset.py`
 - Preset positions already saved in OBSBOT Center (up to 3)
 
 ---
 
-## Step 1 — Install Python 3.12
+## Step 1 — Enable OSC in OBSBOT Center
 
-OBS requires a specific version of Python to run scripts. Follow these steps carefully.
+This is the most important step. The script will not work unless OSC is turned on inside OBSBOT Center.
+
+1. Open **OBSBOT Center**
+2. Click the **Settings** icon (cog symbol)
+3. Look for an **OSC** or **External Control** section
+4. Turn the OSC toggle **ON**
+5. Confirm the IP is set to `127.0.0.1` and the port is `16284` (these are the defaults)
+6. Leave OBSBOT Center running in the background — closing it stops OSC
+
+---
+
+## Step 2 — Install Python 3.12
+
+OBS requires a specific version of Python to run scripts.
 
 1. Open your web browser and go to: **https://www.python.org/downloads/**
 2. Find **Python 3.12** in the list (do not use a newer version — OBS may not be compatible)
@@ -29,9 +42,9 @@ OBS requires a specific version of Python to run scripts. Follow these steps car
 
 ---
 
-## Step 2 — Find the Python Path
+## Step 3 — Find the Python Path
 
-OBS needs to know the folder where Python was installed. To find it:
+OBS needs to know the folder where Python was installed.
 
 1. Click the **Start** button and search for **Command Prompt**, then open it
 2. Type the following and press Enter:
@@ -50,18 +63,17 @@ C:\Users\YourName\AppData\Local\Programs\Python\Python312
 
 ---
 
-## Step 3 — Add the Python Path to OBS
+## Step 4 — Add the Python Path to OBS
 
 1. Open **OBS Studio**
 2. In the menu bar click **Tools → Scripts**
 3. Click the **Python Settings** tab at the top of the Scripts window
-4. In the **Python Install Path** field, paste the path you copied in Step 2
+4. In the **Python Install Path** field, paste the path you copied in Step 3
 5. You should see a message saying **"Python loaded successfully"**
-   - If it does not load, double check the path was copied correctly and that Python 3.12 is installed
 
 ---
 
-## Step 4 — Add the Script to OBS
+## Step 5 — Add the Script to OBS
 
 1. In the Scripts window, click the **Lua/Python Scripts** tab
 2. Click the **+** button at the bottom left
@@ -70,10 +82,10 @@ C:\Users\YourName\AppData\Local\Programs\Python\Python312
 
 ---
 
-## Step 5 — Enter Your Scene Names
+## Step 6 — Enter Your Scene Names
 
 1. Click on `obsbot_preset.py` in the scripts list to select it
-2. On the right side panel you will see fields labelled **Scene → Preset 1**, **Scene → Preset 2**, and so on
+2. On the right side panel you will see fields labelled **Scene → Preset 1**, **Scene → Preset 2**, and **Scene → Preset 3**
 3. Type the name of your OBS scene next to the preset you want it to trigger
 
 For example:
@@ -81,25 +93,57 @@ For example:
 | Field | Scene Name You Type |
 |---|---|
 | Scene → Preset 1 | Wide Shot |
-| Scene → Preset 2 | Podium |
-| Scene → Preset 3 | Demo |
+| Scene → Preset 2 | Speaker |
+| Scene → Preset 3 | Audience |
 
 > **Important:** The scene name must match exactly as it appears in OBS, including capital letters and spaces. For example `Wide Shot` is not the same as `wide shot`.
 
-> **Note:** You only need to fill in the slots you are using. Leave the rest blank.
+---
+
+## Step 7 — Test It
+
+The script settings panel includes **three test buttons** so you can confirm OSC is working before going live:
+
+1. Make sure OBSBOT Center is open with OSC enabled
+2. Click **Test Preset 1** in the script settings
+3. The camera should move to Preset 1 immediately
+
+If the camera moves, you are good — switch between your configured scenes and the camera will follow.
+
+If it does not move, see the troubleshooting section below.
 
 ---
 
-## Step 6 — Test It
+## Troubleshooting
 
-1. Make sure **OBSBOT Center** is open and your camera is connected
-2. Switch to one of the scenes you configured in OBS
-3. The camera should move to the matching preset position
+### Open the log file
 
-If the camera does not move, check the following:
-- OBSBOT Center is running in the background
-- The scene name in the script settings matches exactly
-- The preset positions have been saved in OBSBOT Center beforehand
+The script writes a log of everything it does. To open it:
+
+1. Press **Windows + R**, type `%TEMP%`, press Enter
+2. Find the file **`obsbot_preset.log`**
+3. Open it with Notepad
+
+The log will show whether the OSC commands are being sent successfully and whether scene changes are being detected.
+
+### Camera does not move when testing
+
+Check the following in order:
+- Is **OBSBOT Center** open? (it must be running, not just installed)
+- Is **OSC enabled** inside OBSBOT Center settings?
+- Is the camera connected and visible inside OBSBOT Center?
+- Have the **3 preset positions been saved** inside OBSBOT Center?
+- Is the port set to **16284** in both the script and OBSBOT Center?
+
+### Scene change does not trigger a preset
+
+- Click the script in the OBS Scripts list and check the scene name fields are filled in
+- Open the log file and look for `Scene changed to: '...'` — does the name match exactly?
+- Capital letters and spaces matter
+
+### Click the Reconnect button
+
+If OBSBOT Center was started after OBS, click **Reconnect to OBSBOT** in the script settings to re-establish the connection.
 
 ---
 
